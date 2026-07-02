@@ -46,6 +46,10 @@ jobs:
         shell: pwsh
         run: .\scripts\package.ps1
 
+      - name: Package release dry run
+        shell: pwsh
+        run: .\scripts\package-release.ps1 -Version "0.1.0"
+
       - name: Upload extension package
         uses: actions/upload-artifact@v7
         with:
@@ -53,3 +57,13 @@ jobs:
           path: |
             dist/youtube-local-exporter.zip
             dist/unpacked/youtube-local-exporter/**
+
+      - name: Upload release dry-run assets
+        uses: actions/upload-artifact@v7
+        with:
+          name: youtube-local-exporter-release-dry-run
+          path: |
+            dist/release/youtube-local-exporter-v0.1.0-windows.zip
+            dist/release/youtube-local-exporter-extension-v0.1.0.zip
+            dist/release/SHA256SUMS.txt
+            dist/release/release-manifest.json
