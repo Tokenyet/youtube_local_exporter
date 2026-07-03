@@ -10,7 +10,7 @@ YouTube Local Exporter is a Windows-first Chromium extension that exports video,
 
 No cloud transcription. No analytics. No generated media leaves your machine.
 
-![Extension popup showing video export options](docs/assets/popup-export.png)
+![Animated demo showing a YouTube tab export flow that writes local video, audio, and subtitle files](docs/assets/demo.gif)
 
 ## Why Use It
 
@@ -49,6 +49,8 @@ Open a YouTube watch page, click the extension icon, choose `Video`, `Audio`, or
 - Forced local Whisper subtitles when you want fresh transcription.
 
 ## Screenshots
+
+![Extension popup showing video export options](docs/assets/popup-export.png)
 
 ![Options page showing default export and native host settings](docs/assets/options.png)
 
