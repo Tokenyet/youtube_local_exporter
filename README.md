@@ -10,6 +10,10 @@ YouTube Local Exporter is a Manifest V3 extension plus a local native messaging 
 
 Use this only for videos you own or are authorized to export.
 
+## How It Works
+
+![Architecture diagram showing the browser extension handing an authorized YouTube export request to a local Windows native host, which runs yt-dlp, FFmpeg, and Whisper locally before writing media files to disk](docs/assets/how-it-works.svg)
+
 ## Screenshots
 
 ![Extension popup showing video export options](docs/assets/popup-export.png)
