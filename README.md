@@ -4,34 +4,23 @@
 [![Release](https://img.shields.io/github/v/release/Tokenyet/youtube_local_exporter?include_prereleases)](https://github.com/Tokenyet/youtube_local_exporter/releases)
 [![License: MIT](https://img.shields.io/badge/license-MIT-0f766e.svg)](LICENSE)
 
-Export authorized YouTube videos, audio, and subtitles from Chromium browsers to local files on Windows.
+Turn the current YouTube tab into a local export pipeline.
 
-YouTube Local Exporter is a Manifest V3 extension plus a local native messaging host. The browser UI collects the current YouTube video and export settings; the native host runs `yt-dlp`, FFmpeg, and optional local Whisper transcription on your machine.
+YouTube Local Exporter is a Windows-first Chromium extension that exports video, audio, and subtitles from the current YouTube page to local files. It runs `yt-dlp`, FFmpeg, and optional Whisper transcription through a local native host, so you do not have to copy URLs, export cookies, or remember one-off shell commands.
 
-Use this only for videos you own or are authorized to export.
-
-## How It Works
-
-![Architecture diagram showing the browser extension handing an authorized YouTube export request to a local Windows native host, which runs yt-dlp, FFmpeg, and Whisper locally before writing media files to disk](docs/assets/how-it-works.png)
-
-## Screenshots
+No cloud transcription. No analytics. No generated media leaves your machine.
 
 ![Extension popup showing video export options](docs/assets/popup-export.png)
 
-![Options page showing default export and native host settings](docs/assets/options.png)
+## Why Use It
 
-## Features
+- Export the current YouTube tab instead of pasting URLs into a terminal.
+- Reuse your signed-in browser session when `yt-dlp` needs cookies.
+- Save MP4 video, audio-only files, or SRT/VTT subtitles from one popup.
+- Prefer YouTube subtitles and fall back to local Whisper when a track is missing.
+- Keep output under a folder you choose on your Windows machine.
 
-- Export a YouTube video as MP4 with a selected maximum quality.
-- Export audio as m4a, mp3, opus, wav, or best available.
-- Export subtitles as SRT or VTT.
-- Prefer YouTube subtitles and fall back to local Whisper when no subtitle track is available.
-- Force local Whisper subtitle generation when you want fresh transcription.
-- Pick an output folder per export or save a default folder.
-- Keep generated media under your selected local folder.
-- Store only extension preferences in `chrome.storage.sync`.
-
-## Install From A Release
+## Quick Start
 
 1. Download `youtube-local-exporter-vX.Y.Z-windows.zip` from [Releases](https://github.com/Tokenyet/youtube_local_exporter/releases).
 2. Extract the ZIP.
@@ -49,7 +38,25 @@ Use this only for videos you own or are authorized to export.
 
 Use `-Browser edge`, `-Browser chromium`, `-Browser vivaldi`, or omit `-Browser` to register all supported browser registry paths.
 
-Open a YouTube watch page, click the extension icon, choose an export mode and output folder, then start the export.
+Open a YouTube watch page, click the extension icon, choose `Video`, `Audio`, or `Subtitles`, pick an output folder, then start the export.
+
+## What It Exports
+
+- MP4 video with a selected maximum quality.
+- Audio as m4a, mp3, opus, wav, or best available.
+- Subtitles as SRT or VTT.
+- YouTube subtitles first, local Whisper fallback when no subtitle track is available.
+- Forced local Whisper subtitles when you want fresh transcription.
+
+## Screenshots
+
+![Options page showing default export and native host settings](docs/assets/options.png)
+
+## How It Works
+
+![Architecture diagram showing the browser extension handing a YouTube export request to a local Windows native host, which runs yt-dlp, FFmpeg, and Whisper locally before writing media files to disk](docs/assets/how-it-works.png)
+
+The Manifest V3 extension reads the active YouTube tab only when you open the popup. It sends the export request to a Windows native messaging host, which runs the local toolchain and writes generated files to your selected output folder.
 
 ## Release Downloads
 
@@ -113,7 +120,7 @@ Permissions:
 - `nativeMessaging`: talks to the local native host that performs exports.
 - `storage`: stores extension preferences such as default folder, export mode, formats, and subtitle settings.
 - `cookies`: optionally provides YouTube cookies to `yt-dlp` for videos your browser session is allowed to access.
-- YouTube and Google host permissions: limited to YouTube pages and related Google authentication domains needed for authorized exports.
+- YouTube and Google host permissions: limited to YouTube pages and related Google authentication domains needed for signed-in exports.
 
 See [docs/PRIVACY.md](docs/PRIVACY.md) for the short privacy note.
 
