@@ -1,3 +1,6 @@
+# Merge with Twitch Local Exporter
+# https://github.com/Tokenyet/local_exporters
+
 # YouTube Local Exporter
 
 [![CI](https://github.com/Tokenyet/youtube_local_exporter/actions/workflows/ci.yml/badge.svg)](https://github.com/Tokenyet/youtube_local_exporter/actions/workflows/ci.yml)
